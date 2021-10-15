@@ -1,10 +1,6 @@
 //Contantes
 const URL_FINCA = "https://g2c470a075741f7-dbfinca.adb.us-sanjose-1.oraclecloudapps.com/ords/admin/farm/farm";
-<<<<<<< HEAD
-const URL_CLIENTE = ""
-=======
 const URL_CLIENTE = "https://g3187302123f80d-bdreto2021.adb.us-sanjose-1.oraclecloudapps.com/ords/admin/client/client";
->>>>>>> clientes
 const URL_MENSAJE = "https://g606ce8e943cf8d-gastosbd1.adb.us-sanjose-1.oraclecloudapps.com/ords/admin/message/message";
 //Variables
 let tablaFinca = $("#tablaFinca");
@@ -13,12 +9,9 @@ let tablaFincaCrear = $("#tablaFincaCrear");
 let tablaMensaje = $("#tablaMensaje");
 let tablaMensajeEditarSms = $("#tablaMensajeEditar");
 let tablaMensajeCrear = $("#tablaMensajeCrear");
-<<<<<<< HEAD
-=======
 let tablaCliente = $("#tablaCliente");
 let tablaClienteEditar = $("#tablaClienteEditar");
 let tablaClienteCrear = $("#tablaClienteCrear");
->>>>>>> clientes
 
 ///////////LOGICA PROGRAMACION PARA FINCA///////////////////
 
