@@ -1,7 +1,7 @@
 //Contantes
-const URL_FINCA   = "https://g2c470a075741f7-dbfinca.adb.us-sanjose-1.oraclecloudapps.com/ords/admin/farm/farm";
+const URL_FINCA = "https://g2c470a075741f7-dbfinca.adb.us-sanjose-1.oraclecloudapps.com/ords/admin/farm/farm";
 const URL_CLIENTE = ""
-const URL_MENSAJE = "https://g606ce8e943cf8d-gastosbd1.adb.us-sanjose-1.oraclecloudapps.com/ords/admin/message/message"
+const URL_MENSAJE = "https://g606ce8e943cf8d-gastosbd1.adb.us-sanjose-1.oraclecloudapps.com/ords/admin/message/message";
 //Variables
 let tablaFinca = $("#tablaFinca");
 let tablaFincaEditar = $("#tablaFincaEditar");
@@ -18,6 +18,7 @@ Realiza una peticion HTTP/GET para obtener un solo registro
 de la base de datos por medio del API REST usando el ID.
 */
 function obtenerFincaPorId(element) {
+    limpiarTabla("#tablaFincaEditar tr");
     let id = $(element).parent().parent().find('td').html();
     let urlId = URL_FINCA + "/" + id;
 
@@ -26,7 +27,7 @@ function obtenerFincaPorId(element) {
         dataType: "json",
         type: "GET",
         success: function (respuesta) {
-            agregarATablaEditar(tablaFincaEditar, respuesta);
+            agregarATablaEditar(tablaFincaEditar, respuesta.items);
         },
         error: function (xhr, status) {
             $("#mensajes").html("Error POST" + status);
@@ -35,20 +36,19 @@ function obtenerFincaPorId(element) {
 }
 
 /*
-Metodo: listarFinca
+Metodo: obtenerTodasLasFincas
 Hacer una peticion HTTP/GET para obtener la lista de fincas en la tabla
 por medio del API REST configurada en Oracle cloud.
 */
 function obtenerTodasLasFincas() {
-    
     limpiarTabla("#tablaFinca tr");
-    
+
     $.ajax({
         url: URL_FINCA,
         dataType: "json",
         type: "GET",
         success: function (respuesta) {
-            console.log(respuesta.items);
+            //console.log(respuesta.items);
             agregarATabla(tablaFinca, respuesta.items);
         },
         error: function (xhr, status) {
@@ -83,8 +83,8 @@ Recibe la tabla y los elementos de la peticion HTTP
 para agregarlos a la tabla que permite editar la informacion
 */
 function agregarATablaEditar(tabla, data) {
-    for (let i = 0; i < data["items"].length; i++) {
-        const element = data["items"][i];
+    for (let i = 0; i < data.length; i++) {
+        const element = data[i];
         //console.log(element );
         $(tabla).children().append("<tr><td>" +
             element["id"] + "</td><td><input name='test' id='test' value=\"" +
@@ -228,40 +228,44 @@ function crearFinca() {
 
 // este es la prueba de mensajefunction obtenerMensajePorId(element) {
 
-
-function mostrarMensajesId(element){
+/*
+Metodo: mostrarMensajesId
+Hacer una peticion HTTP/GET para obtener un mensaje por ID.
+*/
+function mostrarMensajesId(element) {
+    limpiarTablaSms("#tablaMensajeEditar tr");
 
     let id = $(element).parent().parent().find('td').html();
     let urlId = URL_MENSAJE + "/" + id;
-    
+
     $.ajax({
         url: urlId,
         dataType: "json",
         type: "GET",
         success: function (respuestasms) {
-            agregarATablaEditarSms(tablaMensajeEditarSms, respuestasms);
+            agregarATablaEditarSms(tablaMensajeEditarSms, respuestasms.items);
         },
         error: function (xhr, status) {
             $("#mensajes").html("Error POST" + status);
         }
-        
+
     });
 }
 
 /*
-Metodo: listarMensaje
+Metodo: obtenerMensajes
 Hacer una peticion HTTP/GET para obtener la lista de los mensajes en la tabla Mensaje
 por medio del API REST configurada en Oracle cloud.
 */
 function obtenerMensajes() {
     limpiarTablaSms("#tablaMensaje tr");
-    
+
     $.ajax({
         url: URL_MENSAJE,
         dataType: "json",
         type: "GET",
         success: function (respuestasms) {
-            console.log(respuestasms.items);
+            //console.log(respuestasms.items);
             agregarATablaSms(tablaMensaje, respuestasms.items);
         },
         error: function (xhr, status) {
@@ -271,7 +275,7 @@ function obtenerMensajes() {
 }
 
 /*
-Metodo: agregarATabla
+Metodo: agregarATablaSms
 Recibe la tabla y los elementos de la peticion HTTP 
 para agregarlos a la tabla de los mensajes creados
 */
@@ -283,7 +287,7 @@ function agregarATablaSms(tabla, data) {
         $(tabla).children().append("<tr><td>" + element["id"] + "</td><td><a onclick='mostrarMensajesId(this)' href='#'>" +
             element["messagetext"] + "</td>" +
             "<td><button onclick='borrarMensaje(this)'>Borrar</button></td></tr>");
-            //console.log(i);
+        //console.log(i);
     }
 }
 
@@ -293,9 +297,9 @@ Recibe la tabla y los elementos de la peticion HTTP
 para agregarlos a la tabla que permite editar la informacion
 */
 function agregarATablaEditarSms(tabla, data) {
-    for (let i = 0; i < data["items"].length; i++) {
-        const element = data["items"][i];
-        //console.log(element );
+    for (let i = 0; i < data.length; i++) {
+        const element = data[i];
+        //console.log(element);
         $(tabla).children().append("<tr><td>" +
             element["id"] + "</td><td><input name='test' id='test' value=\"" +
             element["messagetext"] + "\"></td><td><button onclick='actualizarMensaje(this)'>Actualizar</button></td></tr>");
@@ -334,7 +338,7 @@ function borrarMensaje(element) {
 }
 
 /*
-Metodo: limpiarTabla
+Metodo: limpiarTablaSms
 Recibe la tabla y borrar todas las filas
 */
 function limpiarTablaSms(selector) {
@@ -358,7 +362,7 @@ function actualizarMensaje(element) {
     let datosObject = {
         id: id,
         messagetext: $(rows[1]).children().val(),
-        
+
     };
 
     $.ajax({
@@ -390,14 +394,14 @@ en la base de datos por medio de la API REST
 */
 function crearMensaje() {
     let rows = $("#tablaMensajeCrear td");
-    
-    
+
+
     let datosObject = {
         id: $(rows[0]).children().val(),
         messagetext: $(rows[1]).children().val(),
 
     };
-   
+
     $.ajax({
         url: URL_MENSAJE,
         data: JSON.stringify(datosObject),
@@ -407,10 +411,10 @@ function crearMensaje() {
             //console.log(respuesta);
             $(rows[0]).children().val("");
             $(rows[1]).children().val("");
-            
+
             $("#mensajes").html("El elemento con id: " + datosObject.id + " fue creado exitosamente");
             limpiarTabla("#tablaMensaje tr");
-            
+
             setTimeout(
                 function () {
                     obtenerMensajes();
