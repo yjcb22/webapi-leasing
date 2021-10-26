@@ -48,9 +48,9 @@ public class FincaServicioImpl implements FincaServicio {
             if(finca.getDescription() != null){
                 fincaTmp.setDescription(finca.getDescription());
             }            
-//            if(finca.getCategory() != null){
-//                fincaTmp.setCategory(finca.getCategory());
-//            }
+            if(finca.getCategory() != null){
+                fincaTmp.setCategory(finca.getCategory());
+            }
         }
         return fincaDao.save(fincaTmp);
     }

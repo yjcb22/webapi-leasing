@@ -34,18 +34,18 @@ public class FincaDto implements Serializable {
     private String description;
     
     
-//    @ManyToOne
-//    @JoinColumn(name="id_Category", referencedColumnName = "id_Category")
-//    @JsonIgnoreProperties("farms") //prevent infinite loop in Json    
-//    private CategoriaDto category;
-//    
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "farm")
-//    @JsonIgnoreProperties({"farm","client"})
-//    private List<MensajeDto> messages;
-//    
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "farm")
-//    @JsonIgnoreProperties({"farm","client"})    
-//    private List<ReservaDto> reservations;
+    @ManyToOne
+    @JoinColumn(name="id_Category", referencedColumnName = "id_Category")
+    @JsonIgnoreProperties("farms") //prevent infinite loop in Json    
+    private CategoriaDto category;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "farm")
+    @JsonIgnoreProperties({"farm","client"})
+    private List<MensajeDto> messages;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "farm")
+    @JsonIgnoreProperties({"farm","client"})    
+    private List<ReservaDto> reservations;
     
     
 
@@ -73,13 +73,13 @@ public class FincaDto implements Serializable {
         this.extension = extension;
     }
 
-//    public CategoriaDto getCategory() {
-//        return category;
-//    }
-//
-//    public void setCategory(CategoriaDto category) {
-//        this.category = category;
-//    }
+    public CategoriaDto getCategory() {
+        return category;
+    }
+
+    public void setCategory(CategoriaDto category) {
+        this.category = category;
+    }
 
     public String getName() {
         return name;
@@ -97,26 +97,26 @@ public class FincaDto implements Serializable {
         this.description = description;
     }
 
-//    public List<ReservaDto> getReservations() {
-//        return reservations;
-//    }
-//
-//    public void setReservations(List<ReservaDto> reservations) {
-//        this.reservations = reservations;
-//    }
-//
-//    public List<MensajeDto> getMessages() {
-//        return messages;
-//    }
-//
-//    public void setMessages(List<MensajeDto> messages) {
-//        this.messages = messages;
-//    }
+    public List<ReservaDto> getReservations() {
+        return reservations;
+    }
 
-//    @Override
-//    public String toString() {
-//        return "FincaDto{" + "id=" + id + ", address=" + address + ", extension=" + extension + ", name=" + name + ", description=" + description + ", category=" + category + '}';
-//    }
+    public void setReservations(List<ReservaDto> reservations) {
+        this.reservations = reservations;
+    }
+
+    public List<MensajeDto> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List<MensajeDto> messages) {
+        this.messages = messages;
+    }
+
+    @Override
+    public String toString() {
+        return "FincaDto{" + "id=" + id + ", address=" + address + ", extension=" + extension + ", name=" + name + ", description=" + description + ", category=" + category + '}';
+    }
     
     
     
