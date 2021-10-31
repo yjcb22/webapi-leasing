@@ -5,8 +5,10 @@
  */
 package com.cengtel.ciclo3.controller;
 
+import com.cengtel.ciclo3.model.reportes.ReporteReservaCompletadaCancelada;
 import com.cengtel.ciclo3.model.ReservaDto;
 import com.cengtel.ciclo3.model.ReservaServicio;
+import com.cengtel.ciclo3.model.reportes.ContadorClientes;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -44,8 +46,7 @@ public class ControladorReserva {
     
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public ReservaDto apiGuardarReserva(@RequestBody ReservaDto reserva){
-        reserva.setStatus("created");
+    public ReservaDto apiGuardarReserva(@RequestBody ReservaDto reserva){        
         return reservaServicio.guardarReserva(reserva);
     }
     
@@ -57,4 +58,19 @@ public class ControladorReserva {
         return reservaServicio.borrarReserva(reserva);        
     } 
     
+    @GetMapping("/report-status")
+    public ReporteReservaCompletadaCancelada mostrarReporteCompleteVsCancelled(){
+        
+        return reservaServicio.listarReservasCompletasVsCancelada();
+    }
+    
+    @GetMapping("/report-clients")
+    public List<ContadorClientes> obtenerTopClientesPorReserva(){
+        return reservaServicio.obtenerTopClientesConReservas();
+    }
+    
+    @GetMapping("/report-dates/{start}/{end}")
+    public List<ReservaDto> obtenerReservasPorFechas(@PathVariable("start") String start, @PathVariable("end") String end){
+        return reservaServicio.listarReservasPorFechas(start, end);
+    }
 }

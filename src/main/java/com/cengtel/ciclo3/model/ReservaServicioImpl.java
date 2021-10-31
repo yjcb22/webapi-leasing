@@ -5,6 +5,12 @@
  */
 package com.cengtel.ciclo3.model;
 
+import com.cengtel.ciclo3.model.reportes.ContadorClientes;
+import com.cengtel.ciclo3.model.reportes.ReporteReservaCompletadaCancelada;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -65,6 +71,46 @@ public class ReservaServicioImpl implements ReservaServicio {
     @Override
     public ReservaDto encontrarReservaPorId(ReservaDto reserva) {
         return reservaDao.findById(reserva.getIdReservation()).orElse(null);
+    }
+    
+    @Override
+    public ReporteReservaCompletadaCancelada listarReservasCompletasVsCancelada(){
+        
+        List<ReservaDto> reservasCompletadas = reservaDao.findAllByStatus("completed"); 
+        List<ReservaDto> reservasCanceladas = reservaDao.findAllByStatus("cancelled"); 
+        int numeroCompletadas = reservasCompletadas.size();
+        int numeroCanceladas = reservasCanceladas.size();
+        ReporteReservaCompletadaCancelada reporte = new ReporteReservaCompletadaCancelada(numeroCompletadas, numeroCanceladas);        
+        return reporte;
+    }
+    
+    @Override
+    public List<ContadorClientes> obtenerTopClientesConReservas(){
+        List<ContadorClientes> res = new ArrayList<>();
+        List<Object[]> report = reservaDao.countTotalReservationsByClient();
+        for (int i = 0; i < report.size(); i++) {
+            res.add(new ContadorClientes((Long) report.get(i)[1],(ClienteDto) report.get(i)[0]));
+        }
+        return res;
+    }
+    
+    @Override
+    public List<ReservaDto> listarReservasPorFechas(String start, String end){
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date startDate = new Date();
+        Date endDate = new Date();
+        try {
+            startDate = format.parse(start);
+            endDate = format.parse(end);
+        } catch (ParseException evt) {
+            evt.printStackTrace();
+        }
+        
+        if (startDate.before(endDate)) {
+            return reservaDao.findAllByStartDateAfterAndStartDateBefore(startDate, endDate);
+        } else {
+            return new ArrayList<>();
+        }        
     }
 
 }
