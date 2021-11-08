@@ -22,6 +22,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class ReservaServicioImpl implements ReservaServicio {
 
+    /**
+     * Access to the CRUD
+     */
     @Autowired
     private ReservaDao reservaDao;
 
@@ -41,17 +44,23 @@ public class ReservaServicioImpl implements ReservaServicio {
         //Verificar si el cliente ya existe
         if (reservaTmp != null) {
             //Agregar los nuevos valores
-            if(reserva.getStartDate() != null){
+            if (reserva.getStartDate() != null) {
                 reservaTmp.setStartDate(reserva.getStartDate());
             }
-            if(reserva.getDevolutionDate() != null){
+            if (reserva.getDevolutionDate() != null) {
                 reservaTmp.setDevolutionDate(reserva.getDevolutionDate());
             }
-            if(reserva.getClient() != null){
+            if (reserva.getClient() != null) {
                 reservaTmp.setClient(reserva.getClient());
             }
-            if(reserva.getFarm() != null){
+            if (reserva.getFarm() != null) {
                 reservaTmp.setFarm(reserva.getFarm());
+            }
+            if (reserva.getStatus()!= null) {
+                reservaTmp.setStatus(reserva.getStatus());
+            }
+            if (reserva.getScore()!= null) {
+                reservaTmp.setScore(reserva.getScore());
             }
         }
         return reservaDao.save(reservaTmp);
@@ -72,30 +81,29 @@ public class ReservaServicioImpl implements ReservaServicio {
     public ReservaDto encontrarReservaPorId(ReservaDto reserva) {
         return reservaDao.findById(reserva.getIdReservation()).orElse(null);
     }
-    
+
     @Override
-    public ReporteReservaCompletadaCancelada listarReservasCompletasVsCancelada(){
-        
-        List<ReservaDto> reservasCompletadas = reservaDao.findAllByStatus("completed"); 
-        List<ReservaDto> reservasCanceladas = reservaDao.findAllByStatus("cancelled"); 
-        int numeroCompletadas = reservasCompletadas.size();
-        int numeroCanceladas = reservasCanceladas.size();
-        ReporteReservaCompletadaCancelada reporte = new ReporteReservaCompletadaCancelada(numeroCompletadas, numeroCanceladas);        
-        return reporte;
+    public ReporteReservaCompletadaCancelada listarReservasCompletasVsCancelada() {
+
+        List<ReservaDto> rCompletas = reservaDao.findAllByStatus("completed");
+        List<ReservaDto> rCanceladas = reservaDao.findAllByStatus("cancelled");
+        int numeroCompletadas = rCompletas.size();
+        int numeroCanceladas = rCanceladas.size();
+        return new ReporteReservaCompletadaCancelada(numeroCompletadas, numeroCanceladas);        
     }
-    
+
     @Override
-    public List<ContadorClientes> obtenerTopClientesConReservas(){
+    public List<ContadorClientes> obtenerTopClientesConReservas() {
         List<ContadorClientes> res = new ArrayList<>();
         List<Object[]> report = reservaDao.countTotalReservationsByClient();
-        for (int i = 0; i < report.size(); i++) {
-            res.add(new ContadorClientes((Long) report.get(i)[1],(ClienteDto) report.get(i)[0]));
+        for (Object[] objects : report) {
+            res.add(new ContadorClientes((Long) objects[1], (ClienteDto) objects[0]));
         }
         return res;
     }
-    
+
     @Override
-    public List<ReservaDto> listarReservasPorFechas(String start, String end){
+    public List<ReservaDto> listarReservasPorFechas(String start, String end) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Date startDate = new Date();
         Date endDate = new Date();
@@ -105,12 +113,12 @@ public class ReservaServicioImpl implements ReservaServicio {
         } catch (ParseException evt) {
             evt.printStackTrace();
         }
-        
+
         if (startDate.before(endDate)) {
             return reservaDao.findAllByStartDateAfterAndStartDateBefore(startDate, endDate);
         } else {
             return new ArrayList<>();
-        }        
+        }
     }
 
 }

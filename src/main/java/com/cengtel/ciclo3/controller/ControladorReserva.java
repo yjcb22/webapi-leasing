@@ -39,7 +39,7 @@ public class ControladorReserva {
     
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
-    public ReservaDto actualizarReserva(@RequestBody ReservaDto reserva){
+    public ReservaDto actualizarReserva(@RequestBody ReservaDto reserva){        
         return reservaServicio.actualizarReserva(reserva);        
     }
 

@@ -1,268 +1,99 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
     <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>MINTIC 2021 CICLO 3</title>
-    </head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+        <link rel="stylesheet" type="text/css" href="styles/styleWelcome.css"/>
+
+        <title>Inicio</title>
+    </head>
     <body>
 
-
-        <h2>Login</h2>
-        <div class="sinAutenticacion">            
-            Iniciar session en GitHub 
-            <a href="/oauth2/authorization/github">Click aqui!</a>
-        </div>
-        <div class="conAutenticacion" style="display: none">            
-            Usuario autenticado como: <span id="usuario"></span>
-            <div>
-                <button onclick="logout()">Logout</button>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    
+                    <nav class="navbar navbar-dark bg-dark">
+                        <h1 class="navbar-brand" style="font-size: 30px;">Bienvenido, <span id="usuarioRegistrado">Invitado</span></h1>
+                        <form class="form-inline">                            
+                            <button class="btn btn-success my-2 my-sm-0" type="button" id="navLogin" onclick="go(this)">Ingresar</button>
+                            <button class="btn btn-warning my-2 my-sm-0 ml-2" type="button" id="mainLogout" onclick="go(this)">Salir</button>
+                        </form>
+                    </nav>
+                  
+                </div>
             </div>
         </div>
 
-        <div id="mensajes"></div> 
+        <div class="container-fluid">
+
+            <div class="row text-center">
+                <div class="col">                  
+                    <button id="admin" class="btn btn-dark font-weight-bold" onclick="go(this)">
+                        ADMIN<br>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" fill="currentColor" class="bi bi-file-earmark-lock2-fill" viewBox="0 0 16 16">
+                        <path d="M7 7a1 1 0 0 1 2 0v1H7V7z"/>
+                        <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM10 7v1.076c.54.166 1 .597 1 1.224v2.4c0 .816-.781 1.3-1.5 1.3h-3c-.719 0-1.5-.484-1.5-1.3V9.3c0-.627.46-1.058 1-1.224V7a2 2 0 1 1 4 0z"/>
+                        </svg>
+                    </button> 
+                    <button id="categorias" class="btn btn-dark font-weight-bold" onclick="go(this)">CATEGORIAS<br>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" fill="currentColor" class="bi bi-tags-fill" viewBox="0 0 16 16">
+                        <path d="M2 2a1 1 0 0 1 1-1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 2 6.586V2zm3.5 4a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                        <path d="M1.293 7.793A1 1 0 0 1 1 7.086V2a1 1 0 0 0-1 1v4.586a1 1 0 0 0 .293.707l7 7a1 1 0 0 0 1.414 0l.043-.043-7.457-7.457z"/>
+                        </svg>
+                    </button>
+                    <button id="fincas" class="btn btn-dark font-weight-bold" onclick="go(this)">FINCAS<br>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" fill="currentColor" class="bi bi-house-fill" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+                        <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+                        </svg>
+                    </button> 
+                    <button id="clientes" class="btn btn-dark font-weight-bold" onclick="go(this)">CLIENTES<br>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+                        <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                        <path fill-rule="evenodd" d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z"/>
+                        <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
+                        </svg>
+                    </button>  
+                    <button id="reservas" class="btn btn-dark font-weight-bold" onclick="go(this)">RESERVAS<br>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" fill="currentColor" class="bi bi-calendar-day-fill" viewBox="0 0 16 16">
+                        <path d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4V.5zM16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V5h16v9zm-4.785-6.145a.428.428 0 1 0 0-.855.426.426 0 0 0-.43.43c0 .238.192.425.43.425zm.336.563h-.672v4.105h.672V8.418zm-6.867 4.105v-2.3h2.261v-.61H4.684V7.801h2.464v-.61H4v5.332h.684zm3.296 0h.676V9.98c0-.554.227-1.007.953-1.007.125 0 .258.004.329.015v-.613a1.806 1.806 0 0 0-.254-.02c-.582 0-.891.32-1.012.567h-.02v-.504H7.98v4.105z"/>
+                        </svg>
+                    </button> 
+                    <button id="mensajes" class="btn btn-dark font-weight-bold" onclick="go(this)">MENSAJES<br>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" fill="currentColor" class="bi bi-chat-square-dots-fill" viewBox="0 0 16 16">
+                        <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.5a1 1 0 0 0-.8.4l-1.9 2.533a1 1 0 0 1-1.6 0L5.3 12.4a1 1 0 0 0-.8-.4H2a2 2 0 0 1-2-2V2zm5 4a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+                        </svg>
+                    </button>  
+                    <button id="reportes" class="btn btn-dark font-weight-bold" onclick="go(this)">REPORTES<br>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" fill="currentColor" class="bi bi-file-earmark-text-fill" viewBox="0 0 16 16">
+                        <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM4.5 9a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1h-7zM4 10.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 1 0-1h4a.5.5 0 0 1 0 1h-4z"/>
+                        </svg>
+                    </button>  
+                </div>  
 
 
-        <h2>Categorias</h2>
+            </div>
+        </div>
 
 
-        <table border="1" id="tablaCategoria">
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Descripcion</th>
-                <th>Acciones</th>
-            </tr>
-        </table>
-        <br>
-        <button onclick="obtenerTodasLasCategorias()">Mostrar Categorias</button>
+        <!-- Optional JavaScript; choose one of the two! -->
 
-        <h3>Detalle Categoria</h3>
-        <table border="1" id="tablaCategoriaEditar">
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Descripcion</th>
-                <th>Acciones</th>
-            </tr>
-        </table>
-
-        <h3>Crear Nueva Categoria</h3>
-        <table border="1" id="tablaCategoriaCrear">
-            <tr>                
-                <th>Nombre</th>
-                <th>Descripcion</th> 
-                <th>Acciones</th>
-            </tr>
-            <tr>
-                <td><input name='nombreCategoria' id='nombreCategoria' value=""></td>
-                <td><input name='descripcionCategoria' id='descripcionCategoria' value=""></td>
-                <td><button onclick='crearCategoria(this)'>Crear</button></td>
-
-            </tr>
-        </table>
-
-        <h2>Finca</h2>
-
-
-        <table border="1" id="tablaFinca">
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Extension</th>
-                <th>Categoria</th>
-                <th>Direccion</th>
-                <th>Descripcion</th>
-                <th>Acciones</th>
-            </tr>
-        </table>
-        <br>
-        <button onclick="obtenerTodasLasFincas()">Mostrar Fincas</button>
-
-        <h3>Detalle Finca</h3>
-        <table border="1" id="tablaFincaEditar">
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Extension</th>
-                <th>Categoria</th>
-                <th>Direccion</th>
-                <th>Descripcion</th>
-                <th>Acciones</th>
-            </tr>
-        </table>
-
-        <h3>Crear Nueva Finca</h3>
-        <table border="1" id="tablaFincaCrear">
-            <tr>
-                <th>Nombre</th>
-                <th>Extension</th>
-                <th>Categoria</th>
-                <th>Direccion</th>
-                <th>Descripcion</th>
-                <th>Acciones</th>
-            </tr>
-            <tr>
-                <td><input value=""></td>
-                <td><input value=""></td>
-                <td><input value=""></td>
-                <td><input value=""></td>
-                <td><input value=""></td>
-                <td><button onclick='crearFinca(this)'>Crear</button></td>
-
-            </tr>
-        </table>
-
-
-        <h2>Cliente</h2>
-
-        <table border="1" id="tablaCliente">
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Email</th>
-                <th>Clave</th>
-                <th>Edad</th>
-                <th>Acciones</th>
-            </tr>
-        </table>
-        <br>
-        <button onclick="obtenerTodosLosClientes()">Mostrar Clientes</button>
-
-
-        <h3>Detalle Cliente</h3>
-        <table border="1" id="tablaClienteEditar">
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Email</th>
-                <th>Clave</th>
-                <th>Edad</th>
-                <th>Acciones</th>
-            </tr>
-        </table>
-
-        <h3>Crear Nuevo Cliente</h3>
-        <table border="1" id="tablaClienteCrear">
-            <tr>              
-                <th>Nombre</th>
-                <th>Email</th>
-                <th>Edad</th>
-                <th>Clave</th>
-                <th>Acciones</th>
-            </tr>
-            <tr>               
-                <td><input value=""></td>
-                <td><input value=""></td>
-                <td><input value=""></td>
-                <td><input value=""></td>
-                <td><button onclick='crearCliente(this)'>Crear Cliente</button></td>
-
-            </tr>
-        </table>
-
-        <h2>Mensaje</h2>
-
-        <table border="1" id="tablaMensaje">
-            <tr>  
-                <th>Id</th>
-                <th>Texto</th>
-                <th>Cliente</th>
-                <th>Finca</th>
-                <th>Acciones</th>
-            </tr>
-        </table>
-        <br>
-        <button onclick="obtenerTodosLosMensajes()">Mostrar Mensajes</button>
-        <h3>Detalle Mensaje</h3>
-        <table border="1" id="tablaMensajeEditar">
-            <tr>
-                <th>Id</th>
-                <th>Texto</th>
-                <th>Cliente</th>
-                <th>Finca</th>
-                <th>Acciones</th>
-            </tr>
-        </table>
-
-        <h3>Crear Nuevo Mensaje</h3>
-        <table border="1" id="tablaMensajeCrear">
-            <tr>
-                <th>Texto</th>
-                <th>Cliente</th>
-                <th>Finca</th>
-                <th>Acciones</th>
-            </tr>
-            <tr>
-                <td><input value=""></td>
-                <td><input value=""></td>
-                <td><input value=""></td>
-                <td><button onclick='crearMensaje()'>Crear</button></td>
-            </tr>
-        </table>
-
-        <h2>Reserva</h2>
-
-        <table border="1" id="tablaReservas">
-            <tr>  
-                <th>Id</th>
-                <th>Inicio</th>
-                <th>Fin</th>
-                <th>Cliente</th>
-                <th>Finca</th>
-                <th>Estado</th>
-                <th>Calificacion</th>
-                <th>Acciones</th>
-            </tr>
-        </table>
-        <br>
-        <button onclick="obtenerTodasLasReservas()">Mostrar Reservas</button>
-
-        <h3>Detalle Reserva</h3>
-        <table border="1" id="tablaReservasEditar">
-            <tr>
-                <th>Id</th>
-                <th>Inicio</th>
-                <th>Fin</th>
-                <th>Cliente</th>
-                <th>Finca</th>
-                <th>Estado</th>
-                <th>Calificacion</th>
-                <th>Acciones</th>
-            </tr>
-        </table>
-
-        <h3>Crear Nueva Reserva</h3>
-        <table border="1" id="tablaReservasCrear">
-            <tr>
-                <th>Inicio</th>
-                <th>Fin</th>
-                <th>Cliente</th>
-                <th>Finca</th>
-                <th>Acciones</th>
-            </tr>
-            <tr>
-                <td><input placeholder="2020-12-20" value=""></td>
-                <td><input placeholder="2020-12-21" value=""></td>
-                <td><input value=""></td>
-                <td><input value=""></td>
-                <td><button onclick='crearReserva()'>Crear</button></td>
-            </tr>
-        </table>
-
-
-        <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
         <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
-        <script src="js/categoria.js"></script>
-        <script src="js/finca.js"></script>
-        <script src="js/cliente.js"></script>
-        <script src="js/mensaje.js"></script>
-        <script src="js/reserva.js"></script>
-        <script src="js/login.js"></script>
-    </body>
 
+        <!-- Option 1: Bootstrap Bundle with Popper -->
+        <!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>-->
+
+        <!-- Option 2: Separate Popper and Bootstrap JS -->
+        <!--
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+        -->
+        <script src="js/botones.js"></script>
+    </body>
 </html>

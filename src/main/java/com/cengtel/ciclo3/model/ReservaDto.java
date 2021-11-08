@@ -10,39 +10,39 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
 
-
 /**
  *
  * @author yeison
  */
 @Entity
-@Table(name="reservation")
+@Table(name = "reservation")
 public class ReservaDto implements Serializable {
+
     private static final long serialVersionUID = 1L;
-    
-    public ReservaDto(){
-        
+
+    public ReservaDto() {
+
     }
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_Reservation")
+    @Column(name = "id_Reservation")
     private int idReservation;
     private Date startDate;
     private Date devolutionDate;
     private String status;
     //private String creationDate;
-    
+
     @ManyToOne
-    @JoinColumn(name="id_Farm", referencedColumnName = "id_Farm")    
+    @JoinColumn(name = "id_Farm", referencedColumnName = "id_Farm")
     @JsonIgnoreProperties({"reservations"})
     private FincaDto farm;
-    
+
     @ManyToOne
-    @JoinColumn(name="id_Client", referencedColumnName = "id_Client")
+    @JoinColumn(name = "id_Client", referencedColumnName = "id_Client")
     @JsonIgnoreProperties({"messages", "reservations"})
     private ClienteDto client;
-    
+
     private String score;
 
     public int getIdReservation() {
@@ -104,5 +104,5 @@ public class ReservaDto implements Serializable {
     @Override
     public String toString() {
         return "ReservaDto{" + "idReservation=" + idReservation + ", startDate=" + startDate + ", devolutionDate=" + devolutionDate + ", status=" + status + ", farm=" + farm + ", client=" + client + ", score=" + score + '}';
-    }    
+    }
 }

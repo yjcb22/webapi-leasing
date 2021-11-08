@@ -21,13 +21,14 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter{
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()               
-                .antMatchers("/","/error", "/webjars/**", "/js/**", "/api/**").permitAll()
+                .antMatchers("/", "/categorias.html", "/index2.html", "/fincas.html","/clientes.html","/reservas.html",
+                        "/mensajes.html", "/reportes.html", "/error", "/webjars/**", "/js/**", "/styles/**", "/api/**").permitAll()
                 .anyRequest().authenticated()
                 .and().csrf().ignoringAntMatchers("/api/**", "/logout")
                 .and()
                 .exceptionHandling()
                 .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
                 .and().oauth2Login().defaultSuccessUrl("/", true)
-                .and().logout().logoutSuccessUrl("/").permitAll();
+                .and().logout().logoutSuccessUrl("/");
     }
 }

@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+        <link rel="stylesheet" type="text/css" href="styles/style.css"/>
+
+        <title>Home</title>
+    </head>
+    <body>
+        <!--*******************************************NAVBAR**********************************************************-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="/">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-house-fill" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+                <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+                </svg>
+                Inicio </a>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link font-weight-bold" href="/admin.html" id="navAdmin">ADMIN <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link font-weight-bold" href="/categorias.html" id="navCategorias">CATEGORIAS <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link font-weight-bold" href="/fincas.html" id="navFincas">FINCAS <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link font-weight-bold" href="/clientes.html" id="navClientes">CLIENTES <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link font-weight-bold" href="/reservas.html" id="navReservas">RESERVAS <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link font-weight-bold" href="/mensajes.html" id="navMensajes">MENSAJES <span class="sr-only">(current)</span></a>
+                    </li>     
+                    <li class="nav-item active">
+                        <a class="nav-link font-weight-bold" href="/reportes.html" id="navReportes">REPORTES <span class="sr-only">(current)</span></a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <form class="form-inline">  
+                <span class="navbar-text font-weight-bold mr-sm-2" id="usuarioRegistradoNavbar">@Invitado!</span>
+                <button class="btn btn-success my-2 my-sm-0" type="button" id="navLogin" onclick="login()">Ingresar</button>
+                <button class="btn btn-warning my-2 my-sm-0 ml-2" type="button" id="navLogout" onclick="logout()">Salir</button>
+            </form>
+        </nav>
+
+        <div class="container-fluid">
+            <div class="row ">
+                <div class="col">
+                    <!--********************************************PESTAÑAS DE LAS SECCIONES****************************************-->
+                    <ul class="nav nav-pills nav-justified mb-3" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="tiempo-tab" data-toggle="tab" href="#tiempo" role="tab" aria-controls="tiempo" aria-selected="true">Rango de Tiempo</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="comparar-tab" data-toggle="tab" href="#comparar" role="tab" aria-controls="comparar" aria-selected="false">Completada VS Cancelada</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="topclientes-tab" data-toggle="tab" href="#topcliente" role="tab" aria-controls="topcliente" aria-selected="false">Mejores Clientes</a>
+                        </li>                       
+                    </ul>
+                    <!--**********************************************PESTAÑA TIEMPO***************************************-->
+                    <div class="tab-content d-flex justify-content-center" id="myTabContent">
+                        <div class="tab-pane fade show active " id="tiempo" role="tabpanel" aria-labelledby="tiempo-tab">
+
+
+
+
+                            <!--*****************************************FORMULARIO BUSCAR RESERVAS*************************************************************-->    
+                            <div class="row">
+                                <div class="column">
+
+                                    <form class="form-inline">                           
+                                        <div class="form-group mb-2">
+                                            <label for="fechaInicio">Inicio</label>
+                                            <div class="col-sm-2">
+                                                <input type="date" class="form-control" id="fechaInicio" placeholder="Fecha Inicio">
+                                            </div>
+                                        </div>
+                                        <div class="form-group mx-sm-3 mb-2">
+                                            <label for="fechaFin">Fin</label>
+                                            <div class="col-sm-2">
+                                                <input type="date" class="form-control" id="fechaFin">
+                                            </div>
+                                        </div>
+                                        <button type="button" class="btn btn-secondary mb-2" onclick="buscarReservaTiempo()">Buscar</button>
+                                    </form>
+
+
+                                </div>
+                            </div>
+
+                            <!--**************************************************TABLA RANGO DE TIEMPO*****************************-->
+                            <div class="row">
+                                <div class="column">
+
+                                    <table class="table table-striped text-center" id="tablaRango">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Inicio</th>
+                                                <th scope="col">Fin</th>                                
+                                                <th scope="col">Estado</th>                                
+                                                <th scope="col">Finca</th>                                
+                                                <th scope="col">Cliente</th>                                
+                                                <th scope="col">Calificacion</th>                                
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <!--******************************************************PESTAÑA COMPARACION*********************************************-->
+                        <div class="tab-pane fade" id="comparar" role="tabpanel" aria-labelledby="comparar-tab">
+                            <div class="row">
+                                <div class="column">
+                                    <!--**************************************************TABLA COMPARACION TIEMPO*****************************-->
+                                    <table class="table table-striped text-center" id="tablaTiempo">
+                                        <thead class="thead-dark">
+                                            <tr>                                                
+                                                <th scope="col">Completadas</th>
+                                                <th scope="col">Canceladas</th>                                                                    
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--******************************************************PESTAÑA TOP CLIENTES*********************************************-->
+                        <div class="tab-pane fade" id="topcliente" role="tabpanel" aria-labelledby="topclientes-tab">                            
+
+                            <div class="row">
+                                <div class="column">
+                                    <!--**************************************************TABLA TOP CLIENTES*****************************-->
+                                    <table class="table table-striped text-center" id="tablaTopClientes">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Nombre</th>
+                                                <th scope="col">Cantidad Reservas</th>                                                                 
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>  
+        </div>
+        <!-- Optional JavaScript; choose one of the two! -->
+
+        <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+        <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+
+        <!-- Option 1: Bootstrap Bundle with Popper -->
+        <!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>-->
+
+        <!-- Option 2: Separate Popper and Bootstrap JS -->
+        <!--
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+        -->
+
+        <script src="js/reportes.js"></script>
+        <script src="js/login.js"></script>
+    </body>
+</html>
