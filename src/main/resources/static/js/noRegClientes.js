@@ -1,5 +1,5 @@
 //Contantes
-const URL_CLIENT_GET_ALL = "http://127.0.0.1:2109/api/Client/all";
+const URL_CLIENT_GET_ALL = "http://mintic.cengtel.com:2109/api/Client/all";
 //Variables
 let tablaCliente = $("#noRegTablaCliente");
 

@@ -1,5 +1,5 @@
 //Contantes
-const URL_FARM_GET_ALL = "http://127.0.0.1:2109/api/Farm/all";
+const URL_FARM_GET_ALL = "http://mintic.cengtel.com:2109/api/Farm/all";
 //Variables
 let tablaFinca = $("#noRegtablaFinca");
 

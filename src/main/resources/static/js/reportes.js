@@ -1,7 +1,7 @@
 //Contantes
-const REPORTBYTIME = "http://127.0.0.1:2109/api/Reservation/report-dates";
-const REPORTCOMPARE = "http://127.0.0.1:2109/api/Reservation/report-status";
-const REPORTCLIENTETOP = "http://127.0.0.1:2109/api/Reservation/report-clients";
+const REPORTBYTIME = "http://mintic.cengtel.com:2109/api/Reservation/report-dates";
+const REPORTCOMPARE = "http://mintic.cengtel.com:2109/api/Reservation/report-status";
+const REPORTCLIENTETOP = "http://mintic.cengtel.com:2109/api/Reservation/report-clients";
 //Variables
 let inicio = $("#fechaInicio");
 let fin = $("#fechaFin");

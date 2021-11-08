@@ -1,9 +1,9 @@
 //Contantes
-const URL_CATEGORY_GET_ALL = "http://127.0.0.1:2109/api/Category/all";
-const URL_CATEGORY_GET_ID = "http://127.0.0.1:2109/api/Category";
-const URL_CATEGORY_CREATE = "http://127.0.0.1:2109/api/Category/save";
-const URL_CATEGORY_UPDATE = "http://127.0.0.1:2109/api/Category/update";
-const URL_CATEGORY_DELETE = "http://127.0.0.1:2109/api/Category";
+const URL_CATEGORY_GET_ALL = "http://mintic.cengtel.com:2109/api/Category/all";
+const URL_CATEGORY_GET_ID = "http://mintic.cengtel.com:2109/api/Category";
+const URL_CATEGORY_CREATE = "http://mintic.cengtel.com:2109/api/Category/save";
+const URL_CATEGORY_UPDATE = "http://mintic.cengtel.com:2109/api/Category/update";
+const URL_CATEGORY_DELETE = "http://mintic.cengtel.com:2109/api/Category";
 //Variables
 let tablaCategoria = $("#tablaCategoria");
 let formaCategoriaEditar = $("#formaCategoriaEditar");

@@ -1,9 +1,9 @@
 //Contantes
-const URL_RESERVATION_GET_ALL = "http://127.0.0.1:2109/api/Reservation/all";
-const URL_RESERVATION_GET_ID = "http://127.0.0.1:2109/api/Reservation";
-const URL_RESERVATION_CREATE = "http://127.0.0.1:2109/api/Reservation/save";
-const URL_RESERVATION_UPDATE = "http://127.0.0.1:2109/api/Reservation/update";
-const URL_RESERVATION_DELETE = "http://127.0.0.1:2109/api/Reservation";
+const URL_RESERVATION_GET_ALL = "http://mintic.cengtel.com:2109/api/Reservation/all";
+const URL_RESERVATION_GET_ID = "http://mintic.cengtel.com:2109/api/Reservation";
+const URL_RESERVATION_CREATE = "http://mintic.cengtel.com:2109/api/Reservation/save";
+const URL_RESERVATION_UPDATE = "http://mintic.cengtel.com:2109/api/Reservation/update";
+const URL_RESERVATION_DELETE = "http://mintic.cengtel.com:2109/api/Reservation";
 //Variables
 let tablaReservas = $("#tablaReservas");
 let tablaReservasEditar = $("#tablaReservasEditar");

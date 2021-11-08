@@ -1,5 +1,5 @@
 //Contantes
-const URL_MESSAGE_GET_ALL = "http://127.0.0.1:2109/api/Message/all";
+const URL_MESSAGE_GET_ALL = "http://mintic.cengtel.com:2109/api/Message/all";
 //Variables
 let tablaMensaje = $("#noRegtablaMensaje");
 $(document).ready(function () {

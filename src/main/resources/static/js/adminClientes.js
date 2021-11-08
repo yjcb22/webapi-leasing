@@ -1,9 +1,9 @@
 //Contantes
-const URL_CLIENT_GET_ALL = "http://127.0.0.1:2109/api/Client/all";
-const URL_CLIENT_GET_ID = "http://127.0.0.1:2109/api/Client";
-const URL_CLIENT_CREATE = "http://127.0.0.1:2109/api/Client/save";
-const URL_CLIENT_UPDATE = "http://127.0.0.1:2109/api/Client/update";
-const URL_CLIENT_DELETE = "http://127.0.0.1:2109/api/Client";
+const URL_CLIENT_GET_ALL = "http://mintic.cengtel.com:2109/api/Client/all";
+const URL_CLIENT_GET_ID = "http://mintic.cengtel.com:2109/api/Client";
+const URL_CLIENT_CREATE = "http://mintic.cengtel.com:2109/api/Client/save";
+const URL_CLIENT_UPDATE = "http://mintic.cengtel.com:2109/api/Client/update";
+const URL_CLIENT_DELETE = "http://mintic.cengtel.com:2109/api/Client";
 //Variables
 let tablaCliente = $("#tablaCliente");
 let formaClienteEditar = $("#formaClienteEditar");

@@ -1,5 +1,5 @@
 //Contantes
-const URL_CATEGORY_GET_ALL = "http://127.0.0.1:2109/api/Category/all";
+const URL_CATEGORY_GET_ALL = "http://mintic.cengtel.com:2109/api/Category/all";
 //Variables
 let tablaCategoria = $("#noRegtablaCategoria");
 

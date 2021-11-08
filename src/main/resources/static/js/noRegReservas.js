@@ -1,5 +1,5 @@
 //Contantes
-const URL_RESERVATION_GET_ALL = "http://127.0.0.1:2109/api/Reservation/all";
+const URL_RESERVATION_GET_ALL = "http://mintic.cengtel.com:2109/api/Reservation/all";
 //Variables
 let tablaReserva = $("#noRegtablaReserva");
 $(document).ready(function () {
