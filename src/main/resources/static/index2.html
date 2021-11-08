@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>MINTIC 2021 CICLO 3</title>
+    </head>
+
+    <body>
+
+
+        <h2>Login</h2>
+        <div class="sinAutenticacion">            
+            Iniciar session en GitHub 
+            <a href="/oauth2/authorization/github">Click aqui!</a>
+        </div>
+        <div class="conAutenticacion" style="display: none">            
+            Usuario autenticado como: <span id="usuario"></span>
+            <div>
+                <button onclick="logout()">Logout</button>
+            </div>
+        </div>
+
+        <div id="mensajes"></div> 
+
+
+        <h2>Categorias</h2>
+
+
+        <table border="1" id="tablaCategoria">
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Acciones</th>
+            </tr>
+        </table>
+        <br>
+        <button onclick="obtenerTodasLasCategorias()">Mostrar Categorias</button>
+
+        <h3>Detalle Categoria</h3>
+        <table border="1" id="tablaCategoriaEditar">
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Acciones</th>
+            </tr>
+        </table>
+
+        <h3>Crear Nueva Categoria</h3>
+        <table border="1" id="tablaCategoriaCrear">
+            <tr>                
+                <th>Nombre</th>
+                <th>Descripcion</th> 
+                <th>Acciones</th>
+            </tr>
+            <tr>
+                <td><input name='nombreCategoria' id='nombreCategoria' value=""></td>
+                <td><input name='descripcionCategoria' id='descripcionCategoria' value=""></td>
+                <td><button onclick='crearCategoria(this)'>Crear</button></td>
+
+            </tr>
+        </table>
+
+        <h2>Finca</h2>
+
+
+        <table border="1" id="tablaFinca">
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Extension</th>
+                <th>Categoria</th>
+                <th>Direccion</th>
+                <th>Descripcion</th>
+                <th>Acciones</th>
+            </tr>
+        </table>
+        <br>
+        <button onclick="obtenerTodasLasFincas()">Mostrar Fincas</button>
+
+        <h3>Detalle Finca</h3>
+        <table border="1" id="tablaFincaEditar">
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Extension</th>
+                <th>Categoria</th>
+                <th>Direccion</th>
+                <th>Descripcion</th>
+                <th>Acciones</th>
+            </tr>
+        </table>
+
+        <h3>Crear Nueva Finca</h3>
+        <table border="1" id="tablaFincaCrear">
+            <tr>
+                <th>Nombre</th>
+                <th>Extension</th>
+                <th>Categoria</th>
+                <th>Direccion</th>
+                <th>Descripcion</th>
+                <th>Acciones</th>
+            </tr>
+            <tr>
+                <td><input value=""></td>
+                <td><input value=""></td>
+                <td><input value=""></td>
+                <td><input value=""></td>
+                <td><input value=""></td>
+                <td><button onclick='crearFinca(this)'>Crear</button></td>
+
+            </tr>
+        </table>
+
+
+        <h2>Cliente</h2>
+
+        <table border="1" id="tablaCliente">
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Clave</th>
+                <th>Edad</th>
+                <th>Acciones</th>
+            </tr>
+        </table>
+        <br>
+        <button onclick="obtenerTodosLosClientes()">Mostrar Clientes</button>
+
+
+        <h3>Detalle Cliente</h3>
+        <table border="1" id="tablaClienteEditar">
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Clave</th>
+                <th>Edad</th>
+                <th>Acciones</th>
+            </tr>
+        </table>
+
+        <h3>Crear Nuevo Cliente</h3>
+        <table border="1" id="tablaClienteCrear">
+            <tr>              
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Edad</th>
+                <th>Clave</th>
+                <th>Acciones</th>
+            </tr>
+            <tr>               
+                <td><input value=""></td>
+                <td><input value=""></td>
+                <td><input value=""></td>
+                <td><input value=""></td>
+                <td><button onclick='crearCliente(this)'>Crear Cliente</button></td>
+
+            </tr>
+        </table>
+
+        <h2>Mensaje</h2>
+
+        <table border="1" id="tablaMensaje">
+            <tr>  
+                <th>Id</th>
+                <th>Texto</th>
+                <th>Cliente</th>
+                <th>Finca</th>
+                <th>Acciones</th>
+            </tr>
+        </table>
+        <br>
+        <button onclick="obtenerTodosLosMensajes()">Mostrar Mensajes</button>
+        <h3>Detalle Mensaje</h3>
+        <table border="1" id="tablaMensajeEditar">
+            <tr>
+                <th>Id</th>
+                <th>Texto</th>
+                <th>Cliente</th>
+                <th>Finca</th>
+                <th>Acciones</th>
+            </tr>
+        </table>
+
+        <h3>Crear Nuevo Mensaje</h3>
+        <table border="1" id="tablaMensajeCrear">
+            <tr>
+                <th>Texto</th>
+                <th>Cliente</th>
+                <th>Finca</th>
+                <th>Acciones</th>
+            </tr>
+            <tr>
+                <td><input value=""></td>
+                <td><input value=""></td>
+                <td><input value=""></td>
+                <td><button onclick='crearMensaje()'>Crear</button></td>
+            </tr>
+        </table>
+
+        <h2>Reserva</h2>
+
+        <table border="1" id="tablaReservas">
+            <tr>  
+                <th>Id</th>
+                <th>Inicio</th>
+                <th>Fin</th>
+                <th>Cliente</th>
+                <th>Finca</th>
+                <th>Estado</th>
+                <th>Calificacion</th>
+                <th>Acciones</th>
+            </tr>
+        </table>
+        <br>
+        <button onclick="obtenerTodasLasReservas()">Mostrar Reservas</button>
+
+        <h3>Detalle Reserva</h3>
+        <table border="1" id="tablaReservasEditar">
+            <tr>
+                <th>Id</th>
+                <th>Inicio</th>
+                <th>Fin</th>
+                <th>Cliente</th>
+                <th>Finca</th>
+                <th>Estado</th>
+                <th>Calificacion</th>
+                <th>Acciones</th>
+            </tr>
+        </table>
+
+        <h3>Crear Nueva Reserva</h3>
+        <table border="1" id="tablaReservasCrear">
+            <tr>
+                <th>Inicio</th>
+                <th>Fin</th>
+                <th>Cliente</th>
+                <th>Finca</th>
+                <th>Acciones</th>
+            </tr>
+            <tr>
+                <td><input placeholder="2020-12-20" value=""></td>
+                <td><input placeholder="2020-12-21" value=""></td>
+                <td><input value=""></td>
+                <td><input value=""></td>
+                <td><button onclick='crearReserva()'>Crear</button></td>
+            </tr>
+        </table>
+
+
+        <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+        <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+        <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+        <script src="js/adminCategoria.js"></script>
+        <script src="js/finca.js"></script>
+        <script src="js/cliente.js"></script>
+        <script src="js/mensaje.js"></script>
+        <script src="js/reserva.js"></script>
+        <script src="js/login.js"></script>
+    </body>
+
+</html>

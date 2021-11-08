@@ -1,0 +1,604 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+        <link rel="stylesheet" type="text/css" href="styles/style.css"/>
+
+        <title>Inicio</title>
+    </head>
+    <body>
+        <!--*******************************************NAVBAR**********************************************************-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="/">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-house-fill" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+                <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+                </svg>
+                Inicio </a>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link font-weight-bold" href="/admin.html" id="navAdmin">ADMIN <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link font-weight-bold" href="/categorias.html" id="navCategorias">CATEGORIAS <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link font-weight-bold" href="/fincas.html" id="navFincas">FINCAS <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link font-weight-bold" href="/clientes.html" id="navClientes">CLIENTES <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link font-weight-bold" href="/reservas.html" id="navReservas">RESERVAS <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link font-weight-bold" href="/mensajes.html" id="navMensajes">MENSAJES <span class="sr-only">(current)</span></a>
+                    </li>       
+                    <li class="nav-item">
+                        <a class="nav-link font-weight-bold" href="/reportes.html" id="navReportes">REPORTES <span class="sr-only">(current)</span></a>
+                    </li>       
+
+                </ul>
+
+            </div>
+            <form class="form-inline">  
+                <span class="navbar-text font-weight-bold mr-sm-2" id="usuarioRegistradoNavbar">@Invitado!</span>
+                <button class="btn btn-warning my-2 my-sm-0" type="button" id="navLogin" onclick="logout()">Salir</button>
+            </form>
+        </nav>
+
+        <div class="container-fluid">
+            <div class="row ">
+                <div class="col">
+                    <!--********************************************PESTAÑAS DE LAS SECCIONES****************************************-->
+                    <ul class="nav nav-pills nav-justified mb-3" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="categoria-tab" data-toggle="tab" href="#categoria" role="tab" aria-controls="categoria" aria-selected="true">Crear Categoria</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="finca-tab" data-toggle="tab" href="#finca" role="tab" aria-controls="finca" aria-selected="false">Crear Finca</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="cliente-tab" data-toggle="tab" href="#cliente" role="tab" aria-controls="cliente" aria-selected="false">Crear Cliente</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="mensaje-tab" data-toggle="tab" href="#mensaje" role="tab" aria-controls="mensaje" aria-selected="false">Crear Mensaje</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="reserva-tab" data-toggle="tab" href="#reserva" role="tab" aria-controls="reserva" aria-selected="false">Crear Reserva</a>
+                        </li>
+                    </ul>
+                    <!--**********************************************CONTENIDO PESTAÑA CATEGORIA***************************************-->
+                    <div class="tab-content d-flex justify-content-center" id="myTabContent">
+                        <div class="tab-pane fade show active " id="categoria" role="tabpanel" aria-labelledby="categoria-tab">
+                            <!--**************************************************FORMULARIO PARA AGREGAR NUEVAS CATEGORIAS*****************************-->
+                            <div class="row">
+                                <div class="column">
+
+                                    <form class="form-inline">                           
+                                        <div class="form-group mb-2">
+                                            <label for="nombreCategoria" class="sr-only">NombreCategoria</label>
+                                            <input type="text" class="form-control" id="nombreCategoria" placeholder="Nombre Categoria">
+                                        </div>
+                                        <div class="form-group mx-sm-3 mb-2">
+                                            <label for="descripcionCategoria" class="sr-only">DescripcionCategoria</label>
+                                            <input type="text" class="form-control" id="descripcionCategoria" placeholder="Descripcion Categoria">
+                                        </div>
+                                        <button type="button" class="btn btn-secondary mb-2" onclick="crearCategoria(this)">Agregar</button>
+                                    </form>
+
+                                </div>
+                            </div>
+                            <!--*******************************************FORMULARIO PARA ACTUALIZAR CATEGORIAS EXISTENTES***************************************-->
+                            <div class="row">
+                                <div class="column">
+
+                                    <form class="form-inline" id="formaCategoriaEditar">                                          
+
+                                        <div class="form-group mb-2">
+                                            <label for="nombreCategoriaEditar" class="mr-2 font-weight-bold">ID</label>
+                                            <input type="text" class="form-control" id="nombreCategoriaEditar" placeholder="Nombre Categoria" disabled>
+                                        </div>
+                                        <div class="form-group mx-sm-3 mb-2">
+                                            <label for="descripcionCategoriaEditar" class="sr-only">DescripcionCategoriaEditar</label>
+                                            <input type="text" class="form-control" id="descripcionCategoriaEditar" placeholder="Descripcion Categoria" disabled>
+                                        </div>
+                                        <button type="button" class="btn btn-secondary mb-2" onclick="actualizarCategoria(this)" disabled>Actualizar</button>                              
+                                    </form>
+
+                                </div>
+                            </div>
+                            <!--********************************************ALERTA BOOTSTRAP PARA EVENTO EXITOSO O FALLIDO*****************************************************************-->
+                            <div class="row">
+                                <div class="column">
+
+                                    <div id="alertaCategoria" class="alert alert-success fade" role="alert">
+                                        <strong>Holy Moly!</strong> <span></span>                              
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <!--**************************************TABLA PARA MOSTRAR CATEGORIAS CREADAS Y EXISTENTES************************************************************-->
+                            <table class="table table-striped text-center" id="tablaCategoria">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Descripcion</th>                                
+                                        <th scope="col">Acciones</th>                                
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+
+                        </div>
+
+                        <!--******************************************************PESTAÑA FINCA*********************************************-->
+                        <div class="tab-pane fade" id="finca" role="tabpanel" aria-labelledby="finca-tab">
+                            <!--************************************FORMULARIO PARA CREAR NUEVA FINCA*********************************-->
+                            <div class="row">
+                                <div class="column">
+
+                                    <form class="form-inline" id="formaFinca">                           
+                                        <div class="form-group mb-2">
+                                            <label for="nombreFinca" class="sr-only">NombreFinca</label>
+                                            <input type="text" class="form-control" id="nombreFinca" placeholder="Nombre Finca">
+                                        </div>
+                                        <div class="form-group mx-sm-3 mb-2">
+                                            <label for="direccionFinca" class="sr-only">DireccionFinca</label>
+                                            <input type="text" class="form-control" id="direccionFinca" placeholder="Direccion Finca">
+                                        </div>
+                                        <div class="form-group mx-sm-3 mb-2">
+                                            <label for="extensionFinca" class="sr-only">ExtensionFinca</label>
+                                            <input type="text" class="form-control" id="extensionFinca" placeholder="Extension Finca">
+                                        </div>
+                                        <div class="form-group mx-sm-3 mb-2">
+                                            <label for="descripcionFinca" class="sr-only">DescripcionFinca</label>
+                                            <input type="text" class="form-control" id="descripcionFinca" placeholder="Descripcion Finca">
+                                        </div>
+
+                                        <div class="form-group mx-sm-3 mb-2">
+                                            <label for="CategoriaFinca" class="sr-only">CategoriaFinca</label>
+
+                                            <select class="form-control custom-select" id="CategoriaFinca">
+                                            </select>
+
+                                        </div>
+
+                                        <button type="button" class="btn btn-secondary mb-2" onclick="crearFinca()">Agregar</button>
+                                    </form>
+
+
+                                </div>
+                            </div>
+                            <!--****************************************FORMULARIO PARA ACTUALIZAR UNA FINCA YA EXISTENTE********************************************************-->
+                            <div class="row">
+                                <div class="column">
+
+                                    <form class="form-inline" id="formaFincaEditar">                           
+                                        <div class="form-group mb-2">
+                                            <label for="nombreFincaEditar" class="mr-2 font-weight-bold" id="idFincaEditar">ID</label>
+                                            <input type="text" class="form-control" id="nombreFincaEditar" placeholder="Nombre Finca" disabled>
+                                        </div>
+                                        <div class="form-group mx-sm-3 mb-2">
+                                            <label for="direccionFincaEditar" class="sr-only">DireccionFinca</label>
+                                            <input type="text" class="form-control" id="direccionFincaEditar" placeholder="Direccion Finca" disabled>
+                                        </div>
+                                        <div class="form-group mx-sm-3 mb-2">
+                                            <label for="extensionFincaEditar" class="sr-only">ExtensionFinca</label>
+                                            <input type="text" class="form-control" id="extensionFincaEditar" placeholder="Extension Finca" disabled>
+                                        </div>
+                                        <div class="form-group mx-sm-3 mb-2">
+                                            <label for="descripcionFincaEditar" class="sr-only">DescripcionFinca</label>
+                                            <input type="text" class="form-control" id="descripcionFincaEditar" placeholder="Descripcion Finca" disabled>
+                                        </div>
+
+                                        <div class="form-group mx-sm-3 mb-2">
+                                            <label for="CategoriaFincaEditar" class="sr-only">CategoriaFinca</label>
+
+                                            <select class="form-control custom-select" id="CategoriaFincaEditar" disabled>
+                                            </select>
+
+                                        </div>
+
+                                        <button type="button" class="btn btn-secondary mb-2 " onclick="actualizarFinca()" disabled>Actualizar</button>
+                                    </form>
+
+
+                                </div>
+                            </div>
+                            <!--**********************************ALERTA DE BOOSTRAP PARA INDICAR SI LA OPERACION FUE EXITOSA O CON ERROR******************************-->
+                            <div class="row">
+                                <div class="column">
+
+                                    <div id="alertaFinca" class="alert alert-success fade" role="alert">
+                                        <strong>Holy Moly!</strong> <span></span>                              
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <!--*********************************TABLA PARA MOSTRAR LAS FINCAS QUE SE VAN CREANDO Y LAS EXISTENTES***************************************-->
+                            <table class="table table-striped text-center" id="tablaFinca">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Direccion</th>                                
+                                        <th scope="col">Extension</th>                                
+                                        <th scope="col">Descripcion</th>                                
+                                        <th scope="col">Categoria</th>                                
+                                        <th scope="col">Acciones</th>                                
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+
+                        <!--******************************************************PESTAÑA CLIENTE*********************************************-->
+                        <div class="tab-pane fade" id="cliente" role="tabpanel" aria-labelledby="contact-tab">
+                            <!--*****************************************FORMULARIO PARA AGREGAR NUEVOS CLIENTES*************************************************************-->    
+                            <div class="row">
+                                <div class="column">
+
+
+                                    <form class="form-inline">                           
+                                        <div class="form-group mb-2">
+                                            <label for="nombreCliente" class="sr-only">NombreCliente</label>
+                                            <input type="text" class="form-control" id="nombreCliente" placeholder="Nombre Cliente">
+                                        </div>
+                                        <div class="form-group mx-sm-3 mb-2">
+                                            <label for="emailCliente" class="sr-only">EmailCliente</label>
+                                            <input type="text" class="form-control" id="emailCliente" placeholder="Email Cliente">
+                                        </div>
+                                        <div class="form-group mx-sm-3 mb-2">
+                                            <label for="passwordCliente" class="sr-only">PasswordCliente</label>
+                                            <input type="password" class="form-control" id="passwordCliente" placeholder="Password Cliente">
+                                        </div>
+                                        <div class="form-group mx-sm-3 mb-2">
+                                            <label for="edadCliente" class="sr-only">EdadCliente</label>
+                                            <input type="text" class="form-control" id="edadCliente" placeholder="Edad Cliente">
+                                        </div>                               
+
+                                        <button type="button" class="btn btn-secondary mb-2" onclick="crearCliente()">Agregar</button>
+                                    </form>
+
+
+                                </div>
+                            </div>
+                            <!--*****************************************FORMULARIO PARA ACTUALIZAR CLIENTES EXISTENTES*************************************************************-->    
+                            <div class="row">
+                                <div class="column">
+
+                                    <form class="form-inline" id="formaClienteEditar">                           
+                                        <div class="form-group mb-2">
+                                            <label for="nombreClienteEditar" class="mr-2 font-weight-bold" id="IdClienteEditar">ID</label>
+                                            <input type="text" class="form-control" id="nombreClienteEditar" placeholder="Nombre Cliente" disabled>
+                                        </div>
+                                        <div class="form-group mx-sm-3 mb-2">
+                                            <label for="emailClienteEditar" class="sr-only">EmailCliente</label>
+                                            <input type="text" class="form-control" id="emailClienteEditar" placeholder="Email Cliente" disabled>
+                                        </div>
+                                        <div class="form-group mx-sm-3 mb-2">
+                                            <label for="passwordClienteEditar" class="sr-only">PasswordCliente</label>
+                                            <input type="password" class="form-control" id="passwordClienteEditar" placeholder="Password Cliente" disabled>
+                                        </div>
+                                        <div class="form-group mx-sm-3 mb-2">
+                                            <label for="edadClienteEditar" class="sr-only">EdadCliente</label>
+                                            <input type="text" class="form-control" id="edadClienteEditar" placeholder="Edad Cliente" disabled>
+                                        </div>                               
+
+                                        <button type="button" class="btn btn-secondary mb-2" disabled onclick="actualizarCliente()">Actualizar</button>
+                                    </form>
+
+
+                                </div>
+                            </div>
+
+
+
+                            <!--**********************************ALERTA DE BOOSTRAP PARA INDICAR SI LA OPERACION FUE EXITOSA O CON ERROR******************************-->
+                            <div class="row">
+                                <div class="column">
+
+                                    <div id="alertaCliente" class="alert alert-success fade" role="alert">
+                                        <strong>Holy Moly!</strong> <span></span>                              
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <!--*********************************TABLA PARA MOSTRAR LAS FINCAS QUE SE VAN CREANDO Y LAS EXISTENTES***************************************-->
+                            <table class="table table-striped text-center" id="tablaCliente">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Email</th>                                
+                                        <th scope="col">Password</th>                                
+                                        <th scope="col">Edad</th>                                                                  
+                                        <th scope="col">Acciones</th>                                
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+
+
+
+                        </div>
+                        <!--******************************************************PESTAÑA MENSAJE********************************************************************-->
+
+                        <div class="tab-pane fade" id="mensaje" role="tabpanel" aria-labelledby="mensaje-tab">
+                            <!--*****************************************FORMULARIO PARA AGREGAR NUEVOS MENSAJES*************************************************************-->    
+
+                            <div class="row">
+                                <div class="column">
+
+                                    <form class="form-inline">                           
+                                        <div class="form-group mb-2">
+                                            <label for="textoMensajeEditar" class="sr-only">TextoMensaje</label>
+                                            <input type="text" class="form-control" id="textoMensaje" placeholder="Texto Mensaje">
+                                        </div>
+
+                                        <div class="form-group mx-sm-3 mb-2">
+                                            <label for="clienteMensaje" class="sr-only">ClienteMensaje</label>
+                                            <select class="custom-select" id="clienteMensaje">                              
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group mx-sm-3 mb-2">
+                                            <label for="fincaMensaje" class="sr-only">FincaMensaje</label>
+                                            <select class="custom-select" id="fincaMensaje">                  
+                                            </select>
+                                        </div>
+
+                                        <button type="button" class="btn btn-secondary mb-2" onclick="crearMensaje(this)">Agregar</button>
+                                    </form>
+
+
+
+                                </div>
+                            </div>
+                            <!--*****************************************FORMULARIO PARA ACTUALIZAR MENSAJES EXISTENTES*************************************************************-->    
+
+                            <div class="row">
+                                <div class="column">
+
+                                    <form class="form-inline" id="formaMensajeEditar">                           
+                                        <div class="form-group mb-2">
+                                            <label for="textoMensaje" class="mr-2 font-weight-bold" id="idMensajeEditar">ID</label>
+                                            <input type="text" class="form-control" id="textoMensajeEditar" placeholder="Texto Mensaje" disabled>
+                                        </div>
+
+                                        <div class="form-group mx-sm-3 mb-2">
+                                            <label for="clienteMensajeEditar" class="sr-only">ClienteMensaje</label>
+                                            <select class="custom-select" id="clienteMensajeEditar" disabled>                      
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group mx-sm-3 mb-2">
+                                            <label for="fincaMensajeEditar" class="sr-only">FincaMensaje</label>
+                                            <select class="custom-select" id="fincaMensajeEditar" disabled>                      
+                                            </select>
+                                        </div>
+
+                                        <button type="button" class="btn btn-secondary mb-2" onclick="actualizarMensaje(this)" disabled>Actualizar</button>
+                                    </form>
+
+
+
+                                </div>
+                            </div>
+                            <!--**********************************ALERTA DE BOOSTRAP PARA INDICAR SI LA OPERACION FUE EXITOSA O CON ERROR******************************-->
+
+                            <div class="row">
+                                <div class="column">
+
+                                    <div id="alertaMensaje" class="alert alert-success fade" role="alert">
+                                        <strong>Holy Moly!</strong> <span></span>                              
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <!--*********************************TABLA PARA MOSTRAR LOS MENSAJES QUE SE VAN CREANDO Y LAS EXISTENTES***************************************-->
+                            <table class="table table-striped text-center" id="tablaMensaje">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Texto</th>
+                                        <th scope="col">Cliente</th>                                
+                                        <th scope="col">Finca</th>                               
+
+                                        <th scope="col">Acciones</th>                                
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+
+                        </div>
+                        <!--******************************************************PESTAÑA RESERVA********************************************************************-->
+                        <div class="tab-pane fade" id="reserva" role="tabpanel" aria-labelledby="reserva-tab">
+                            <!--*****************************************FORMULARIO PARA AGREGAR RESERVAS NUEVAS*************************************************************-->    
+                            <div class="row">
+                                <div class="column">
+
+                                    <form class="form-inline">                           
+                                        <div class="form-group mb-2">
+                                            <label for="fechaInicio">Inicio</label>
+                                            <div class="col-sm-2">
+                                                <input type="date" class="form-control" id="fechaInicio" placeholder="Fecha Inicio">
+                                            </div>
+                                        </div>
+                                        <div class="form-group mx-sm-3 mb-2">
+                                            <label for="fechaFin">Fin</label>
+                                            <div class="col-sm-2">
+                                                <input type="date" class="form-control" id="fechaFin">
+                                            </div>
+                                        </div>
+                                        <div class="form-group mx-sm-3 mb-2">
+                                            <label for="clienteReserva" class="sr-only">ClienteReserva</label>
+                                            <select class="custom-select" id="clienteReserva">                                
+                                            </select>
+                                        </div>
+                                        <div class="form-group mx-sm-3 mb-2">
+                                            <label for="fincaReserva" class="sr-only">FincaReserva</label>
+                                            <select class="custom-select" id="fincaReserva">                                        
+                                            </select>
+                                        </div>        
+                                        <div class="form-group mx-sm-3 mb-2">
+                                            <label for="estadoReserva" class="sr-only">FincaReserva</label>
+                                            <select class="custom-select" id="estadoReserva">   
+                                                <option selected>Estado</option>
+                                                <option value="completed">Completada</option>
+                                                <option value="cancelled">Cancelada</option>
+                                            </select>
+                                        </div>   
+                                        <div class="form-group mx-sm-3 mb-2">
+                                            <label for="fincaReserva" class="sr-only">FincaReserva</label>
+                                            <select class="custom-select" id="calificacionReserva">
+                                                <option selected>Calificacion</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                            </select>
+                                        </div>
+
+
+
+                                        <button type="button" class="btn btn-secondary mb-2" onclick="crearReserva()">Agregar</button>
+                                    </form>
+
+
+                                </div>
+                            </div>
+                            <!--*****************************************FORMULARIO PARA ACTUALIZAR RESERVAS EXISTENTES*************************************************************-->    
+                            <div class="row">
+                                <div class="column">
+
+                                    <form class="form-inline" id="formaReservaEditar">                           
+                                        <div class="form-group mb-2">
+                                            <label class="mr-2 font-weight-bold"id="idReservaEditar">ID</label>
+                                            <label for="fechaInicio">Inicio</label>
+                                            <div class="col-sm-2">
+                                                <input type="date" class="form-control" id="fechaInicioEditar" placeholder="Fecha Inicio" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="form-group mx-sm-3 mb-2">
+                                            <label for="fechaFin">Fin</label>
+                                            <div class="col-sm-2">
+                                                <input type="date" class="form-control" id="fechaFinEditar" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="form-group mx-sm-3 mb-2">
+                                            <label for="clienteReserva" class="sr-only">ClienteReserva</label>
+                                            <select class="custom-select" id="clienteReservaEditar" disabled>                                            
+                                            </select>
+                                        </div>
+                                        <div class="form-group mx-sm-3 mb-2">
+                                            <label for="fincaReserva" class="sr-only">FincaReserva</label>
+                                            <select class="custom-select" id="fincaReservaEditar" disabled>                                             
+                                            </select>
+                                        </div>                                        
+                                        <div class="form-group mx-sm-3 mb-2">
+                                            <label for="estadoReservaEditar" class="sr-only">FincaReserva</label>
+                                            <select class="custom-select" id="estadoReservaEditar" disabled>   
+                                                <option selected>Estado</option>
+                                                <option value="completed">Completada</option>
+                                                <option value="cancelled">Cancelada</option>
+                                            </select>
+                                        </div> 
+                                        <div class="form-group mx-sm-3 mb-2">
+                                            <label for="fincaReserva" class="sr-only">FincaReserva</label>
+                                            <select class="custom-select" id="calificacionReservaEditar" disabled>
+                                                <option selectzaUKQ6Pned>Calificacion</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                            </select>
+                                        </div>
+
+
+
+                                        <button type="button" class="btn btn-secondary mb-2" onclick="actualizarReserva(this)" disabled>Actualizar</button>
+                                    </form>
+
+
+                                </div>
+                            </div>
+                            <!--**********************************ALERTA DE BOOSTRAP PARA INDICAR SI LA OPERACION FUE EXITOSA O CON ERROR******************************-->
+                            <div class="row">
+                                <div class="column">
+
+                                    <div id="alertaReserva" class="alert alert-success fade" role="alert">
+                                        <strong>Holy Moly!</strong> <span></span>                              
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <!--*********************************TABLA PARA MOSTRAR LAS RESERVAS QUE SE VAN CREANDO Y LAS EXISTENTES***************************************-->
+                            <table class="table table-striped text-center" id="tablaReserva">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Inicio</th>
+                                        <th scope="col">Fin</th>                                
+                                        <th scope="col">Estado</th>                               
+                                        <th scope="col">Finca</th>                               
+                                        <th scope="col">Cliente</th>                               
+                                        <th scope="col">Calificacion</th>
+                                        <th scope="col">Acciones</th>                                
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+
+
+                        </div>
+                    </div>
+                </div>  
+            </div>
+        </div>
+
+
+
+
+
+
+        <!-- Optional JavaScript; choose one of the two! -->
+
+        <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+        <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+
+        <!-- Option 1: Bootstrap Bundle with Popper -->
+        <!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>-->
+
+        <!-- Option 2: Separate Popper and Bootstrap JS -->
+        <!--
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+        -->
+
+        <script src="js/adminCategoria.js"></script>
+        <script src="js/adminFincas.js"></script>
+        <script src="js/adminClientes.js"></script>
+        <script src="js/adminMensajes.js"></script>
+        <script src="js/adminReservas.js"></script>
+        <script src="js/informacionInicial.js"></script>
+    </body>
+</html>
